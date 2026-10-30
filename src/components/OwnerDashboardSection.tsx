@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, Clock, Plus } from 'lucide-react';
+import { Check, CheckCircle2, Clock, Copy, Plus, Share2 } from 'lucide-react';
 import { PHOTO_PLATES, type PhotoPlateKey } from '../utils/photoPlates';
 import {
   calculateStudioOwnerMetrics,
@@ -15,6 +15,9 @@ interface OwnerDashboardSectionProps {
   onUpdateBookingStatus: (bookingId: string, nextStatus: BookingStatus) => void;
   onPublishPortfolioItem: (newItem: PortfolioItem) => void;
 }
+
+const PUBLIC_SHARE_URL =
+  'https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app';
 
 const PLATE_OPTIONS: { key: PhotoPlateKey; label: string }[] = [
   { key: 'heroStudio', label: 'Alabaster Studio Daylight Portrait' },
@@ -33,6 +36,7 @@ export const OwnerDashboardSection: React.FC<OwnerDashboardSectionProps> = ({
   onPublishPortfolioItem,
 }) => {
   const metrics = calculateStudioOwnerMetrics(bookings, portfolioCount);
+  const [copiedShareLink, setCopiedShareLink] = useState(false);
 
   // State for Owner's "Publish New Artwork to Portfolio" form
   const [newTitle, setNewTitle] = useState('');
@@ -45,6 +49,18 @@ export const OwnerDashboardSection: React.FC<OwnerDashboardSectionProps> = ({
   const [newPrice, setNewPrice] = useState('1500');
   const [publishError, setPublishError] = useState('');
   const [publishSuccess, setPublishSuccess] = useState('');
+
+  const handleCopyPublicUrl = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(PUBLIC_SHARE_URL);
+      }
+      setCopiedShareLink(true);
+      setTimeout(() => setCopiedShareLink(false), 3000);
+    } catch {
+      setCopiedShareLink(true);
+    }
+  };
 
   const handlePublishArtwork = (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,6 +136,50 @@ export const OwnerDashboardSection: React.FC<OwnerDashboardSectionProps> = ({
 
           <div className="text-xs font-mono-tabular text-zinc-500">
             <span>Active Studio Season: Autumn / Winter 2026</span>
+          </div>
+        </div>
+
+        {/* Public Discord & Client Share Link Bar (Prevents Sharing Private ais-dev URL) */}
+        <div className="p-5 rounded-2xl bg-[#FAFAFA] border border-zinc-200/90 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-zinc-900">
+              <Share2 className="w-3.5 h-3.5 text-zinc-700" />
+              <span>Public Discord &amp; Client Share Link (OpenGraph Ready)</span>
+            </div>
+            <p className="text-xs text-zinc-600 leading-relaxed">
+              When sharing on Discord or with clients, always use the public{' '}
+              <code className="font-mono-tabular text-zinc-900">ais-pre</code> URL
+              below (the private <code className="font-mono-tabular">ais-dev</code>{' '}
+              preview URL requires your personal login cookie and appears blank to
+              other people).
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <input
+              type="text"
+              readOnly
+              aria-label="Public Share URL for Discord"
+              value={PUBLIC_SHARE_URL}
+              className="px-3.5 py-2 text-xs font-mono-tabular bg-white border border-zinc-200 rounded-lg text-zinc-800 w-full sm:w-80 focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={handleCopyPublicUrl}
+              className="px-4 py-2 text-xs font-semibold text-white bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+            >
+              {copiedShareLink ? (
+                <>
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Copied Public Link</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy Discord Share URL</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
 
