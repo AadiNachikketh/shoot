@@ -1,0 +1,6 @@
+{
+  "name": "Lumière Atelier — Fine Art & Editorial Photography",
+  "description": "A white-gallery photography portfolio, transparent commission estimator, client contact-sheet proofing room, and studio owner management platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
