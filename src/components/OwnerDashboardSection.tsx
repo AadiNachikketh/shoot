@@ -17,7 +17,10 @@ interface OwnerDashboardSectionProps {
 }
 
 const PUBLIC_SHARE_URL =
-  'https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app';
+  typeof window !== 'undefined' &&
+  window.location.hostname.endsWith('github.io')
+    ? window.location.origin + window.location.pathname
+    : 'https://aadinachikketh.github.io/shoot/';
 
 const PLATE_OPTIONS: { key: PhotoPlateKey; label: string }[] = [
   { key: 'heroStudio', label: 'Alabaster Studio Daylight Portrait' },

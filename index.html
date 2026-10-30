@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#18181B" />
     <link
       rel="canonical"
-      href="https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app/"
+      href="https://aadinachikketh.github.io/shoot/"
     />
 
     <!-- OpenGraph / Discord Embed Metadata -->
@@ -27,11 +27,11 @@
     />
     <meta
       property="og:url"
-      content="https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app/"
+      content="https://aadinachikketh.github.io/shoot/"
     />
     <meta
       property="og:image"
-      content="https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app/og-card.png"
+      content="https://aadinachikketh.github.io/shoot/public/og-card.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
@@ -53,7 +53,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app/og-card.png"
+      content="https://aadinachikketh.github.io/shoot/public/og-card.png"
     />
 
     <!-- Schema.org Structured Data -->
@@ -64,8 +64,8 @@
         "name": "Lumière Atelier — Fine Art & Editorial Photography",
         "applicationCategory": "DesignApplication",
         "operatingSystem": "All",
-        "url": "https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app/",
-        "image": "https://ais-pre-opmnupgb6fxlagmsfgozdu-661232155875.asia-southeast1.run.app/og-card.png",
+        "url": "https://aadinachikketh.github.io/shoot/",
+        "image": "https://aadinachikketh.github.io/shoot/public/og-card.png",
         "description": "A white-gallery photography portfolio, transparent commission estimator, client contact-sheet proofing room, and studio owner management platform.",
         "offers": {
           "@type": "AggregateOffer",
@@ -82,27 +82,54 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Automatic GitHub Pages Root-Branch Bootloader:
+      // When deployed directly from a GitHub repo branch (e.g. aadinachikketh.github.io/shoot/)
+      // without a Vite build step, browsers cannot execute raw ./src/main.tsx.
+      // This loader automatically boots the precompiled production bundle in ./public/gh-pages-app.js.
+      window.__bootGhPagesFallback = function () {
+        if (window.__LUMIERE_MOUNTED__ || window.__LUMIERE_FALLBACK_LOADING__) return;
+        window.__LUMIERE_FALLBACK_LOADING__ = true;
+
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = './public/gh-pages-app.css';
+        css.onerror = function () {
+          var altCss = document.createElement('link');
+          altCss.rel = 'stylesheet';
+          altCss.href = './gh-pages-app.css';
+          document.head.appendChild(altCss);
+        };
+        document.head.appendChild(css);
+
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = './public/gh-pages-app.js';
+        script.onerror = function () {
+          var altScript = document.createElement('script');
+          altScript.type = 'module';
+          altScript.src = './gh-pages-app.js';
+          document.body.appendChild(altScript);
+        };
+        document.body.appendChild(script);
+      };
+    </script>
   </head>
   <body class="bg-[#FAFAFA] text-zinc-900 antialiased selection:bg-zinc-900 selection:text-white">
-    <div id="root">
-      <!-- Pre-rendered instant fallback shell so Discord in-app browsers, slow networks, and link previewers never see a blank white page -->
-      <div style="min-height: 100vh; background-color: #FFFFFF; color: #18181B; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;">
-        <header style="display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid #E4E4E7;">
-          <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 600;">Lumière Atelier</span>
-          <span style="font-size: 12px; color: #52525B;">Daylight Photography Studio · Paris / New York / Tokyo</span>
-        </header>
-        <main style="max-width: 1200px; margin: 0 auto; padding: 64px 32px;">
-          <p style="font-size: 12px; color: #71717A; margin-bottom: 16px;">Daylight Photography Studio &amp; Print Archive · Paris / New York / Tokyo</p>
-          <h1 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 48px; line-height: 1.08; font-weight: 500; max-width: 720px; margin: 0 0 24px 0;">
-            Sculpting natural light into timeless editorial &amp; architectural monographs.
-          </h1>
-          <p style="font-size: 16px; line-height: 1.6; color: #52525B; max-width: 640px;">
-            Loading interactive exhibition archive, live commission quote calculator, client contact-sheet proofing room, and studio owner portal…
-          </p>
-        </main>
-      </div>
-    </div>
-    <script type="module" src="./src/main.tsx"></script>
+    <div id="root"></div>
+    <script
+      type="module"
+      src="./src/main.tsx"
+      onerror="window.__bootGhPagesFallback()"
+    ></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+          if (!window.__LUMIERE_MOUNTED__) {
+            window.__bootGhPagesFallback();
+          }
+        }, 400);
+      });
+    </script>
   </body>
 </html>
-

@@ -3,6 +3,12 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
+declare global {
+  interface Window {
+    __LUMIERE_MOUNTED__?: boolean;
+  }
+}
+
 interface ErrorBoundaryState {
   hasError: boolean;
   errorMessage: string;
@@ -55,7 +61,8 @@ class StudioErrorBoundary extends React.Component<
 }
 
 const rootElement = document.getElementById('root');
-if (rootElement) {
+if (rootElement && !window.__LUMIERE_MOUNTED__) {
+  window.__LUMIERE_MOUNTED__ = true;
   createRoot(rootElement).render(
     <StudioErrorBoundary>
       <App />
